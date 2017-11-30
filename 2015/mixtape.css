@@ -57,12 +57,11 @@ h1 {
 
 h2 {
   font-family: 'Nothing You Could Do', cursive;
-  font-size: 3vw;
+  font-size: 4vw;
   font-style: italic;
   font-weight: 400;
-  text-transform: capitalize;
   position: absolute;
-  left:15%;
+  left:25%;
   top: 0;
 }
 
