@@ -56,7 +56,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Homemade Apple', cursive;
+  font-family: 'Sedgwick Ave Display', cursive;
   font-size: 4vw;
   font-style: italic;
   font-weight: 400;
@@ -92,7 +92,7 @@ ul {
   /*background: #ffffff url("wintersnow.jpg") no-repeat center top;*/
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(tape.jpg),url(snow1a.jpg);
+  background-image: url(tape.jpg),url(snow2017.jpg);
   background-color: skyblue;
   background-blend-mode: multiply;
   color: #fff;
