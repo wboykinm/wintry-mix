@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="google">
+  <title>A Wintry Mix 2015</title>
+  <meta content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" name="viewport">
+  <link href="mixtape.css" rel="stylesheet">
+  <script>
+      window.console = window.console || function(t) {};
+  </script>
+</head>
+<body>
+  <div class="bbplayer">
+    <h2>A Wintry Mix 2015</h2>
+    <div class="bb-controls">
+      <span class="bb-rewind"></span>
+      <span class="bb-play"></span>
+      <span class="bb-forward"></span>
+    </div>
+    <div class="bb-display">
+      <span class="bb-trackTime"></span>
+      <span class="bb-trackLength"></span>
+      <span class="bb-trackTitle"></span>
+      <span class="bb-artist"></span>
+    </div>
+    <audio id='audioTracks'>
+      <source src="https://www.dropbox.com/s/7jpchfmtrm07pw6/01%20-%20Snow%20Day.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/bfbnj42zdne20ft/02%20-%20Spirit%20Cold.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/6s2gfqzwui6fcbz/03%20-%20Cat%20Burglar.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/5k9y6smhkqv0rwv/04%20-%20Coldest%20Days.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/lzybxcu8b58hpks/05%20-%20I%20Want%20An%20Alien%20For%20Christmas.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/feh94qgh1i7i86j/06%20-%20Christmas%20%26%20New%20Year%20Blues%20%28Christmas%20Is%20on%20Me%29.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/vv3lidd8c8i9qvw/07%20-%20Cold%20Nights%20of%20Winter_Trettondagsmarschen.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/h8i6vui83klvdwd/08%20-%20Snow%20Storm.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/o4r4tvqxubqnd94/09%20-%20Shortest%20Day.mp3?dl=1">
+      <source src="https://www.dropbox.com/s/j400o245q0jg2rm/10%20-%20A%20Carol%20Symphony_%20Andante%20quasi%20lento%20e%20contabile.mp3?dl=1">
+    </audio>
+  </div>
+  <div class='column'>
+    <h3>Tracks</h3>
+    <p>1 - Snow Day - <i>Matt Pond PA</i></p>
+    <p>2 - Spirit Cold - <i>Tall Heights</i></p>
+    <p>3 - Cat Burglar - <i>Jonathan Inc.</i></p>
+    <p>4 - Coldest Days - <i>The Rural Alberta Advantage</i></p>
+    <p>5 - I Want an Alien for Christmas - <i>Fountains of Wayne</i></p>
+    <p>6 - Christmas & New Year Blues - <i>Tampa Red</i></p>
+    <p>7 - Cold Nights of Winter - <i>Molly Mason</i></p>
+    <p>8 - Snow Storm - <i>Amarante</i></p>
+    <p>9 - Shortest Day - <i>Jan Pulsford</i></p>
+    <p>10 - A Carol Symphony: Andante quasi lento e contabile - <i>City of Prague Philharmonic</i></p>
+  </div>
+  <script src="bbplayer.js"></script>
+
+  <script>
+  if (document.location.search.match(/type=embed/gi)) {
+    window.parent.postMessage("resize", "*");
+  }
+  </script>
+</body>
+</html>
