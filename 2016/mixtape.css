@@ -17,7 +17,7 @@ html {
 }
 
 body,button,input,select,textarea {
-  background-color: skyblue;
+  background-color: #DFF0FF;
   color: #231f20;
   font-family: 'Open Sans';
   font-size: 2vw;
