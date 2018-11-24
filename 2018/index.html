@@ -40,34 +40,28 @@
       <span class="bb-trackTitle"></span>
       <span class="bb-artist"></span>
     </div>
-    <audio id='audioTracks'>
-      <source src="https://www.dropbox.com/s/73btfo7373paw48/01%20-%20Bill%20Withers%20-%20Wintertime.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/7f275gd50s71jc3/02%20-%20James%20Brown%20-%20Santa%20Claus%20Go%20Straight%20To%20The%20Ghetto.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/aaoix9mdb8cp59b/03%20-%20Khalid%20-%20Winter.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/f5e7v87xp4u11d6/04%20-%20Jono%20McCleery%20-%20Tomorrow%20%28Radio%20Edit%29.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/4f9d7x0e5pqq35v/05%20-%20The%20Drifters%20%26%20Clyde%20McPhatter%20-%20Warm%20Your%20Heart.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/8ox1zpldc2e5qwp/06%20-%20Ian%20Merrigan%20-%20California%20Winter.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/9bvanq73iclsvak/07%20-%20Ben%20Howard%20-%20Old%20Pine.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/6n97xn3oscmr1de/08%20-%20Floyd%20Dixon%20-%20Empty%20Stocking%20Blues.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/vv1smmkqyv8q7xa/09%20-%20Sufjan%20Stevens%20-%20Lo%21%20How%20A%20Rose%20E%27er%20Blooming.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/ztg1ft5synxy6s8/10%20-%20Great%20Lake%20Swimmers%20-%20Song%20For%20the%20Angels.mp3?dl=1">
-      <source src="https://www.dropbox.com/s/7eyv5b4qoizwcu1/11%20-%20Yo%20La%20Tengo%20-%20I%20Feel%20Like%20Going%20Home.mp3?dl=1">
-    </audio>
+    <audio id='audioTracks'></audio>
   </div>
-  <div class='column'>
+  <div id='tracklist' class='column'>
     <h3>Track list</h3>
-    <p>1<i> - Wintertime - </i>Bill Withers</p>
-    <p>2<i> - Santa Claus Go Staight to the Ghetto - </i>James Brown</p>
-    <p>3<i> - Winter - </i>Khalid</p>
-    <p>4<i> - Tomorrow - </i>Jono McCleery</p>
-    <p>5<i> - Warm Your Heart - </i>The Drifers with Clyde McPhatter</p>
-    <p>6<i> - California Winter - </i>Ian Merrigan</p>
-    <p>7<i> - Old Pine - </i>Ben Howard</p>
-    <p>8<i> - Empty Stocking Blues - </i>Floyd Dixon</p>
-    <p>9<i> - Lo! How a Rose E'er Blooming - </i>Sufjan Stevens</p>
-    <p>10<i> - Song for the Angels - </i>Great Lake Swimmers</p>
-    <p>11<i> - I Feel Like Going Home - </i>Yo La Tengo</p>
   </div>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
+  // UPDATE FROM CONTROLLER SPREADSHEET LIKE THIS: https://docs.google.com/spreadsheets/d/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/edit#gid=0
+  var mixUrl = 'https://spreadsheets.google.com/feeds/list/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/1/public/values?alt=json'
+  $.getJSON(mixUrl, function(data) {
+    records = data.feed.entry
+    for (var i = 0; i < records.length; i++) {
+      $("#tracklist").append(
+        "<p>" + records[i].gsx$order.$t + "<i> - " + records[i].gsx$song.$t + " - </i>" + records[i].gsx$artist.$t + "</p>"
+      )
+      $("#audioTracks").append(
+        "<source src='" + (records[i].gsx$url.$t).slice(0, -1) + "1'>"
+      )
+    }
+  })
+  </script>
+  
   <script src="bbplayer.js"></script>
 
   <script>
