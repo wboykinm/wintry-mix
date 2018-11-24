@@ -48,7 +48,7 @@ strong,b {
 
 h1 {
   color: #ddd;
-  font-family: 'Montserrat';
+  font-family: 'Over the Rainbow', cursive;
   font-size: 8vw;
   text-align: center;
   text-transform: uppercase;
@@ -56,9 +56,9 @@ h1 {
 }
 
 h2 {
-  font-family: 'Faster One', cursive;
-  font-size: 4vw;
-  font-style: italic;
+  font-family: 'Over the Rainbow', cursive;
+  font-size: 5vw;
+  font-style: bold;
   font-weight: 400;
   position: absolute;
   left:25%;
