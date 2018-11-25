@@ -56,6 +56,7 @@
   <div id='tracklist' class='column'>
     <h3>Track list</h3>
   </div>
+  
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script>
   // UPDATE FROM CONTROLLER SPREADSHEET LIKE THIS: https://docs.google.com/spreadsheets/d/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/edit#gid=0
@@ -64,7 +65,7 @@
     records = data.feed.entry
     for (var i = 0; i < records.length; i++) {
       // BUILD TRACKLIST
-      $("#tracklist").append( "<p>" + records[i].gsx$order.$t + "<i> - " + records[i].gsx$song.$t + " - </i>" + records[i].gsx$artist.$t + "</p>" )
+      $("#tracklist").append( "<p><b>" + records[i].gsx$order.$t + "</b><i> - " + records[i].gsx$song.$t + " - </i>" + records[i].gsx$artist.$t + "</p>" )
       // BUILD SOURCES
       $("#audioTracks").append( "<source src='" + (records[i].gsx$url.$t).slice(0, -1) + "1'>" )
     }
@@ -74,9 +75,15 @@
   <script src="bbplayer.js"></script>
 
   <script>
-  if (document.location.search.match(/type=embed/gi)) {
-    window.parent.postMessage("resize", "*");
-  }
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
   </script>
+  <div class="footer">
+    Play on <a href="https://play.google.com/music/playlist/AMaBXylGsXHywXe2TDVhFQj-3TUIWnpTppfQ08E38cvL7bVSA2rn3I0-DhKUZM5IyYpaCim_XNgqUIn_HAIJvHft27pjWOSutA%3D%3D" target="_blank">Google</a> or <a href="https://open.spotify.com/playlist/41SusayP3B38eopNi3ObJX" target="_blank">Spotify</a> | 
+    or, play <a href="https://awintrymix.net">Past Wintry Mixes</a>
+    <br>
+    <small><i>With love, from <a href="https://billmorris.io" target="_blank">Bill Morris</a></i></small>
+  </div>
 </body>
 </html>

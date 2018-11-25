@@ -272,3 +272,13 @@ ul {
 .icon-download:before {
   content: "\e604";
 }
+
+.footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  color: #999;
+  background-color: #141414;
+  text-align: center;
+}
