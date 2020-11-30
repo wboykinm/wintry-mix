@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="google">
+  <title>A Wintry Mix 2020</title>
+  <meta content="width=device-width, initial-scale=1, user-scalable=no, minimal-ui" name="viewport">
+  <meta property="og:site_name" content="Wintry Mix"/>
+  <meta property="og:title" content="A Wintry Mix 2020"/>
+  <meta property="og:url" content="https://awintrymix.net/2020" />
+  <meta property="og:description" content="Tunes for the season, 2020"/>
+  <meta property="og:image" content="https://awintrymix.net/2020/social_2020.png">
+  <meta property="og:image:secure_url" content="https://awintrymix.net/2020/social_2020.png">
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1024" />
+  <meta property="og:image:height" content="474" />
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:domain" value="Wintry Mix" />
+  <meta name="twitter:title" value="A Wintry Mix 2020" />
+  <meta name="twitter:description" value="Tunes for the season, 2020" />
+  <meta name="twitter:image" content="https://awintrymix.net/2020/social_2020.png" />
+  <meta name="twitter:url" value="https://awintrymix.net/2020" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+  <link href="mixtape.css" rel="stylesheet">
+  
+  <script>
+      window.console = window.console || function(t) {};
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43097260-4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-43097260-4');
+  </script>
+
+</head>
+<body>
+  <div class="bbplayer">
+    <h2>A WINTRY MIX 2020</h2>
+    <div class="bb-controls">
+      <span class="bb-rewind"></span>
+      <span class="bb-play"></span>
+      <span class="bb-forward"></span>
+    </div>
+    <div class="bb-display">
+      <span class="bb-trackTime"></span>
+      <span class="bb-trackLength"></span>
+      <span class="bb-trackTitle"></span>
+      <span class="bb-artist"></span>
+    </div>
+    <audio id='audioTracks'></audio>
+  </div>
+  <div id='tracklist' class='column'>
+    <h3>Track list</h3>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script>
+  // UPDATE FROM CONTROLLER SPREADSHEET LIKE THIS: https://docs.google.com/spreadsheets/d/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/edit#gid=0
+  var mixUrl = 'https://spreadsheets.google.com/feeds/list/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/3/public/values?alt=json'
+  //https://docs.google.com/spreadsheets/d/e/2PACX-1vSKtIUjvWQrdaqrdKe1T6v39dINBNLHhQPNQP4rviCzK36k2TcAV-cFm5AjMJ9Zd4ZJEcQsFv6s7EEa/pub?gid=49766091&single=true&output=csv
+  $.getJSON(mixUrl, function(data) {
+    records = data.feed.entry
+    for (var i = 0; i < records.length; i++) {
+      // BUILD TRACKLIST
+      $("#tracklist").append( "<p><b>" + records[i].gsx$order.$t + "</b><i> - " + records[i].gsx$song.$t + " - </i>" + records[i].gsx$artist.$t + "</p>" )
+      // BUILD SOURCES
+      $("#audioTracks").append( "<source src='" + (records[i].gsx$url.$t).slice(0, -1) + "1'>" )
+    }
+  })
+  </script>
+  
+  <script src="bbplayer.js"></script>
+
+  <script>
+    if (document.location.search.match(/type=embed/gi)) {
+      window.parent.postMessage("resize", "*");
+    }
+  </script>
+  <div class="footer">
+    Play on <a href="https://music.youtube.com/playlist?list=PLwlWwrIbefkRTH0HB_6_-Z_UhwxA8fFcr" target="_blank">YouTube</a> or <a href="https://open.spotify.com/playlist/1wE2lppOhXQf8N7Hq8bprz" target="_blank">Spotify</a> | 
+    or, play <a href="https://awintrymix.net">Past Wintry Mixes</a>
+    <br>
+    <small><i>With love, from <a href="https://billmorris.io" target="_blank">Bill Morris</a></i></small>
+  </div>
+</body>
+</html>
