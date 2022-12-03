@@ -63,6 +63,8 @@
   <script>
   // GET FROM CONTROLLER SPREADSHEET LIKE THIS:
   var mixUrl = 'https://sheets.googleapis.com/v4/spreadsheets/1VQFGJvCVOynI_mcuu-rdm2pBWSMgC7Y4ECgOq_4lBRo/values/2022?key=AIzaSyAAqBIlGexI8NWVFg1lhuzih3tA7WNupno'
+  // BIG HEADS UP TO FUTURE BILL:
+  // The above API call is now locked to the wintry mix domain, so it'll 403 in local testing.
   $.getJSON(mixUrl, function(data) {
     records = data.values
     for (var i = 1; i <= records.length - 1; i++) {
