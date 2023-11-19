@@ -48,7 +48,7 @@ strong,b {
 
 h1 {
   color: #ddd;
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Nothing You Could Do', cursive;
   font-size: 10vw;
   text-align: center;
   text-transform: uppercase;
@@ -56,7 +56,7 @@ h1 {
 }
 
 h2 {
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Nothing You Could Do', cursive;
   font-size: 6vw;
   font-style: bold;
   font-weight: 400;
@@ -92,7 +92,7 @@ ul {
   /*background: #ffffff url("wintersnow.jpg") no-repeat center top;*/
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url(tape.jpg),url(snow2022.jpg);
+  background-image: url(tape.jpg),url(snow2023.png);
   background-color: skyblue;
   background-blend-mode: multiply;
   color: #fff;
