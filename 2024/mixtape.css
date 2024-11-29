@@ -1,6 +1,6 @@
-@import  "http://fonts.googleapis.com/css?family=Montserrat:700";
+@import  "https://fonts.googleapis.com/css?family=Montserrat:700";
 
-@import  "http://fonts.googleapis.com/css?family=Open+Sans:400,700,800";
+@import  "https://fonts.googleapis.com/css?family=Open+Sans:400,700,800";
 
 @import  "https://fonts.googleapis.com/css2?family=Give+You+Glory&display=swap";
 
@@ -58,7 +58,7 @@ h1 {
 h2 {
   font-family: "Give You Glory", cursive;
   font-size: 6vw;
-  font-style: bold;
+  font-weight: bold;
   font-weight: 400;
   position: absolute;
   text-align: center;
@@ -192,7 +192,7 @@ ul {
   display: block;
   font-size: 3vw;
   font-weight: 800;
-  overflow: none;
+  overflow: hidden;
   white-space: nowrap;
   width: 100%;
 }
