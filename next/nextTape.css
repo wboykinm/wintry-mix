@@ -10,11 +10,16 @@ body {
     /* Keep text readable over the background */
 }
 
-.cassette-player {
+.player-container {
     width: 300px;
+    /* Shared width for both elements */
     margin: 50px auto;
-    background: rgba(51, 51, 51, 0.85);
-    /* Apply blend mode to background */
+    text-align: center;
+}
+
+.cassette-player {
+    background: #333;
+    background-blend-mode: overlay;
     border-radius: 20px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
     padding: 20px;
@@ -131,3 +136,64 @@ button {
 button:hover {
     background: #555;
 }
+
+.track-list {
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    /* Inherits the width of .player-container */
+}
+
+.j-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: left;
+    color: #555;
+}
+
+.j-card h4 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.j-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.j-card li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.j-card li span.track-order {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.j-card li span.track-artist {
+    color: #555;
+    font-style: italic;
+    margin-right: 5px;
+}
+
+.j-card li span.track-title {
+    color: #000;
+}
+
+.footer {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color: #999;
+    background-color: #141414;
+    text-align: center;
+  }

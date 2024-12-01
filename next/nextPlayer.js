@@ -33,10 +33,10 @@ function updateTrack() {
     url.searchParams.set('dl', '1'); // Ensure the URL has dl=1
     audioPlayer.src = url.toString();
     trackTitle.textContent = `Track: ${track.song} - Artist: ${track.artist}`;
-    audioPlayer.load(); 
-    audioPlayer.play();
-    playPauseBtn.textContent = "⏸ Pause";
-    document.querySelectorAll('.reel').forEach(reel => reel.style.animationPlayState = 'running');
+    audioPlayer.load();
+    //audioPlayer.play();
+    //playPauseBtn.textContent = "⏸ Pause";
+    //document.querySelectorAll('.reel').forEach(reel => reel.style.animationPlayState = 'running');
 }
 
 function firstTrack() {
@@ -44,8 +44,8 @@ function firstTrack() {
     let url = new URL(track.url);
     url.searchParams.set('dl', '1'); // Ensure the URL has dl=1
     audioPlayer.src = url.toString();
-    trackTitle.textContent = `Track: ${track.song} - Artist: ${track.artist}`;
-    audioPlayer.load(); 
+    trackTitle.textContent = `${track.song} - ${track.artist}`;
+    audioPlayer.load();
 }
 
 document.addEventListener('DOMContentLoaded', () => {

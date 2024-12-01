@@ -90,3 +90,24 @@ const tracks = [
         "url": "https://www.dropbox.com/scl/fi/b6m0g6eygs4zb3fdkyi2s/15-Prelude-to-Cello-Suite-1-In-G-Major.mp3?rlkey=z0f8p6li31mxt6q76ctipat36&dl=1"
     }
 ];
+
+const jCardContainer = document.getElementById('j-card');
+
+// Add a title to the j-card
+const title = document.createElement('h4');
+title.textContent = 'A Wintry Mix 2024 • Track List';
+jCardContainer.appendChild(title);
+
+// Add track list
+const trackList = document.createElement('ul');
+tracks.forEach(track => {
+    const listItem = document.createElement('li');
+    listItem.innerHTML = `
+    <span class="track-order">${track.order}.</span>
+    <span class="track-artist">${track.artist}</span>
+    - <span class="track-title">${track.song}</span>
+`;
+    trackList.appendChild(listItem);
+});
+
+jCardContainer.appendChild(trackList);
