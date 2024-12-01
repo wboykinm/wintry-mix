@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Wintry Mix 2024</title>
+    <meta property="og:site_name" content="Wintry Mix" />
+    <meta property="og:title" content="A Wintry Mix 2024" />
+    <meta property="og:url" content="https://awintrymix.net/2024" />
+    <meta property="og:description" content="Tunes for the season, 2024" />
+    <meta property="og:image" content="https://awintrymix.net/2024/social_2024.jpg">
+    <meta property="og:image:secure_url" content="https://awintrymix.net/2024/social_2024.jpg">
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="474" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:domain" value="Wintry Mix" />
+    <meta name="twitter:title" value="A Wintry Mix 2024" />
+    <meta name="twitter:description" value="Tunes for the season, 2024" />
+    <meta name="twitter:image" content="https://awintrymix.net/2024/social_2024.jpg" />
+    <meta name="twitter:url" value="https://awintrymix.net/2024" />
+    <link rel="stylesheet" href="nextTape.css">
+    </link>
+</head>
+
+<body>
+    <div class="player-container">
+        <div class="cassette-player">
+            <div class="cassette">
+                <div class="reels">
+                    <div class="reel" id="reel-left">
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                    </div>
+                    <div class="reel" id="reel-right">
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                        <div class="spoke"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="track-title"></div>
+            <div class="controls">
+                <button onclick="prevTrack()">⏮ Prev</button>
+                <button id="play-pause-btn" onclick="togglePlay()">▶ Play</button>
+                <button onclick="nextTrack()">⏭ Next</button>
+            </div>
+        </div>
+
+        <div class="track-list">
+            <div class="j-card" id="j-card">
+                <!-- Tracks will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <audio id="audio-player"></audio>
+
+    <div class="footer">
+        Play on <a href="https://music.youtube.com/playlist?list=PLwlWwrIbefkQDEHJrPevgl085AzZdi6mK&si=VWgjnXhqAurD2Lic" target="_blank">YouTube</a> or <a href="https://open.spotify.com/playlist/7xPj3pUsX0NZqAO65olS2y?si=fDLZUvTcTy6DKqvwZR3pIw" target="_blank">Spotify</a> |
+        or, play <a href="https://awintrymix.net">Past Wintry Mixes</a>
+        <br>
+        <small><i>With love, from <a href="https://billmorris.io" target="_blank">Bill Morris</a></i></small>
+    </div>
+    <script src="nextTracks.js"></script>
+    <script src="nextPlayer.js"></script>
+</body>
+
+</html>

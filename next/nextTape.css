@@ -1,0 +1,199 @@
+body {
+    font-family: Arial, sans-serif;
+    background: url('snow2024.jpg') no-repeat center center fixed;
+    /* Add background image */
+    background-size: cover;
+    /* Make sure the image covers the entire viewport */
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    /* Keep text readable over the background */
+}
+
+.player-container {
+    width: 300px;
+    /* Shared width for both elements */
+    margin: 50px auto;
+    text-align: center;
+}
+
+.cassette-player {
+    background: #333;
+    background-blend-mode: overlay;
+    border-radius: 20px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.cassette {
+    position: relative;
+    background: rgba(68, 68, 68, 0.75);
+    /* 10% transparency applied */
+    border-radius: 10px;
+    height: 100px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    /* Ensure reels don't spill outside */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    /* Optional: Add depth */
+}
+
+.reels {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-around;
+    /* Space reels proportionally */
+    width: 80%;
+    /* Adjust container width to bring reels closer together */
+    margin: 0 auto;
+    left: 10%;
+    /* Centers the reels based on the adjusted width */
+}
+
+.reel {
+    width: 50px;
+    height: 50px;
+    background: radial-gradient(circle, #999, #555);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: spin 5s linear infinite paused;
+    /* Reels spin when playing */
+}
+
+.spoke {
+    position: absolute;
+    width: 2px;
+    /* Spoke thickness */
+    height: 50%;
+    /* Full spoke length */
+    background: #333;
+}
+
+.spoke:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.spoke:nth-child(2) {
+    transform: rotate(60deg);
+}
+
+.spoke:nth-child(3) {
+    transform: rotate(120deg);
+}
+
+.spoke:nth-child(4) {
+    transform: rotate(180deg);
+}
+
+.spoke:nth-child(5) {
+    transform: rotate(240deg);
+}
+
+.spoke:nth-child(6) {
+    transform: rotate(300deg);
+}
+
+.reel::after {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    background: #555;
+    /* Matches the reel's color */
+    border-radius: 50%;
+    /* Ensures a perfect circle */
+    z-index: 1;
+    /* Keeps the circle above the spokes */
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+button {
+    background: #666;
+    border: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #555;
+}
+
+.track-list {
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    width: 100%;
+    /* Inherits the width of .player-container */
+}
+
+.j-card {
+    background: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: left;
+    color: #555;
+}
+
+.j-card h4 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+.j-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.j-card li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    line-height: 1.2;
+}
+
+.j-card li span.track-order {
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.j-card li span.track-artist {
+    color: #555;
+    font-style: italic;
+    margin-right: 5px;
+}
+
+.j-card li span.track-title {
+    color: #000;
+}
+
+.footer {
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color: #999;
+    background-color: #141414;
+    text-align: center;
+  }
