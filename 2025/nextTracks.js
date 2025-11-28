@@ -89,7 +89,7 @@ const jCardContainer = document.getElementById('j-card');
 
 // Add a title to the j-card
 const title = document.createElement('h4');
-title.textContent = 'A Wintry Mix 2024 • Track List';
+title.textContent = 'A Wintry Mix 2025 • Track List';
 jCardContainer.appendChild(title);
 
 // Add track list
