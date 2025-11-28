@@ -1,0 +1,9 @@
+{
+  "name": "wintry-mix",
+  "version": "1.0.0",
+  "description": "Holiday season music mixtapes",
+  "scripts": {
+    "generate-social": "node generate-social-image.js"
+  },
+  "dependencies": {}
+}
