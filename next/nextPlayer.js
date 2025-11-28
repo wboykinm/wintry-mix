@@ -18,25 +18,30 @@ function togglePlay() {
 }
 
 function nextTrack() {
+    const wasPlaying = !audioPlayer.paused;
     currentTrack = (currentTrack + 1) % tracks.length;
-    updateTrack();
+    updateTrack(wasPlaying);
 }
 
 function prevTrack() {
+    const wasPlaying = !audioPlayer.paused;
     currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
-    updateTrack();
+    updateTrack(wasPlaying);
 }
 
-function updateTrack() {
+function updateTrack(shouldPlay = false) {
     let track = tracks[currentTrack];
     let url = new URL(track.url);
     url.searchParams.set('dl', '1'); // Ensure the URL has dl=1
     audioPlayer.src = url.toString();
-    trackTitle.textContent = `Track: ${track.song} - Artist: ${track.artist}`;
+    trackTitle.textContent = `${track.song} - ${track.artist}`;
     audioPlayer.load();
-    //audioPlayer.play();
-    //playPauseBtn.textContent = "⏸ Pause";
-    //document.querySelectorAll('.reel').forEach(reel => reel.style.animationPlayState = 'running');
+
+    if (shouldPlay) {
+        audioPlayer.play();
+        playPauseBtn.textContent = "⏸ Pause";
+        document.querySelectorAll('.reel').forEach(reel => reel.style.animationPlayState = 'running');
+    }
 }
 
 function firstTrack() {
@@ -47,6 +52,22 @@ function firstTrack() {
     trackTitle.textContent = `${track.song} - ${track.artist}`;
     audioPlayer.load();
 }
+
+// Handle track ending
+audioPlayer.addEventListener('ended', () => {
+    // Check if this is the last track
+    if (currentTrack === tracks.length - 1) {
+        // Last track finished - reset to first track and stop
+        currentTrack = 0;
+        updateTrack(false);
+        playPauseBtn.textContent = "▶ Play";
+        document.querySelectorAll('.reel').forEach(reel => reel.style.animationPlayState = 'paused');
+    } else {
+        // Not the last track - auto-play next
+        currentTrack = (currentTrack + 1) % tracks.length;
+        updateTrack(true);
+    }
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     firstTrack();
