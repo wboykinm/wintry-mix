@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: url('snow2024.jpg') no-repeat center center fixed;
+    background: url('snow2025.jpg') no-repeat center center fixed;
     /* Add background image */
     background-size: cover;
     /* Make sure the image covers the entire viewport */
@@ -18,44 +18,88 @@ body {
 }
 
 .cassette-player {
-    background: #333;
-    background-blend-mode: overlay;
-    border-radius: 20px;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    background: linear-gradient(135deg, #6a6a6a 0%, #505050 50%, #3a3a3a 100%);
+    border-radius: 3px;
+    box-shadow:
+        0 8px 15px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.3);
     padding: 20px;
+    border: 1px solid #2a2a2a;
+}
+
+/* Corner screws for cassette player */
+.cassette-player::before,
+.cassette-player::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle, #666 0%, #444 40%, #333 100%);
+    border-radius: 50%;
+    box-shadow:
+        inset 0 1px 1px rgba(0, 0, 0, 0.5),
+        0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+.cassette-player::before {
+    top: 8px;
+    left: 8px;
+}
+
+.cassette-player::after {
+    top: 8px;
+    right: 8px;
 }
 
 .cassette {
     position: relative;
-    background: rgba(68, 68, 68, 0.75);
-    /* 10% transparency applied */
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.75);
+    /* 25% transparent to show background */
+    border-radius: 3px;
     height: 100px;
     margin-bottom: 20px;
-    overflow: hidden;
-    /* Ensure reels don't spill outside */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    /* Optional: Add depth */
+    overflow: visible;
+    box-shadow:
+        inset 0 0 10px rgba(0, 0, 0, 0.3),
+        0 2px 5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+#track-title {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        -1px -1px 2px rgba(0, 0, 0, 0.5);
+    margin: 10px 0;
+    padding: 5px;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
 }
 
 .reels {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     justify-content: space-around;
     /* Space reels proportionally */
     width: 80%;
     /* Adjust container width to bring reels closer together */
-    margin: 0 auto;
-    left: 10%;
-    /* Centers the reels based on the adjusted width */
+    background: rgba(0, 0, 0, 0.4);
+    /* Dark window behind reels */
+    padding: 10px;
+    border-radius: 2px;
 }
 
 .reel {
     width: 50px;
     height: 50px;
-    background: radial-gradient(circle, #999, #555);
+    background: radial-gradient(circle at 30% 30%, #ddd, #999 40%, #666 70%, #444);
     border-radius: 50%;
     display: flex;
     justify-content: center;
@@ -63,15 +107,19 @@ body {
     position: relative;
     animation: spin 5s linear infinite paused;
     /* Reels spin when playing */
+    box-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.4),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
 .spoke {
     position: absolute;
-    width: 2px;
+    width: 3px;
     /* Spoke thickness */
     height: 50%;
     /* Full spoke length */
-    background: #333;
+    background: linear-gradient(to bottom, #222, #444, #222);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
 }
 
 .spoke:nth-child(1) {
@@ -103,13 +151,17 @@ body {
     position: absolute;
     width: 30%;
     height: 30%;
-    background: #555;
+    background: radial-gradient(circle, #777, #444);
     /* Matches the reel's color */
     border-radius: 50%;
     /* Ensures a perfect circle */
     z-index: 1;
     /* Keeps the circle above the spokes */
+    box-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.5),
+        inset 0 -1px 1px rgba(0, 0, 0, 0.3);
 }
+
 
 @keyframes spin {
     100% {
