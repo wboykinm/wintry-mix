@@ -21,83 +21,206 @@
   <meta name="twitter:description" value="Tunes for the season" />
   <meta name="twitter:image" content="https://awintrymix.net/2019/social_2019.png" />
   <meta name="twitter:url" value="https://awintrymix.net" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@4.5.2/dist/litera/bootstrap.min.css" integrity="sha384-enpDwFISL6M3ZGZ50Tjo8m65q06uLVnyvkFO3rsoW0UC15ATBFz3QEhr3hmxpYsn" crossorigin="anonymous">
+
+  <!-- Import multiple handwritten fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Indie+Flower&family=Shadows+Into+Light&family=Caveat:wght@700&family=Rock+Salt&family=Patrick+Hand&family=Kalam:wght@700&family=Covered+By+Your+Grace&family=Satisfy&family=Allura&family=Homemade+Apple&display=swap" rel="stylesheet">
+
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43097260-3"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'UA-43097260-3');
   </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #1a1a1a, #2d2d2d);
+      color: #fff;
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    h1 {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #f0f0f0;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .subtitle a {
+      color: #88ccff;
+      text-decoration: none;
+    }
+
+    .subtitle a:hover {
+      text-decoration: underline;
+    }
+
+    .cassette-shelf {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 40px 20px;
+      background: linear-gradient(to bottom,
+        rgba(80, 50, 20, 0.4),
+        rgba(60, 40, 20, 0.6));
+      border-radius: 10px;
+      box-shadow:
+        inset 0 -5px 15px rgba(0, 0, 0, 0.4),
+        0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+    }
+
+    .cassette-shelf::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 20px;
+      background: linear-gradient(to bottom,
+        rgba(40, 25, 10, 0.8),
+        rgba(30, 20, 10, 0.9));
+      border-radius: 0 0 10px 10px;
+    }
+
+    .cassette-spine {
+      width: 80px;
+      height: 280px;
+      background: linear-gradient(to right,
+        rgba(200, 200, 200, 0.9),
+        rgba(230, 230, 230, 0.95),
+        rgba(200, 200, 200, 0.9));
+      border: 2px solid #999;
+      border-radius: 3px;
+      box-shadow:
+        -3px 0 8px rgba(0, 0, 0, 0.3),
+        inset 2px 0 5px rgba(255, 255, 255, 0.3),
+        inset -2px 0 5px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+    }
+
+    .cassette-spine:hover {
+      transform: translateY(-10px);
+      box-shadow:
+        -3px 5px 15px rgba(0, 0, 0, 0.5),
+        inset 2px 0 5px rgba(255, 255, 255, 0.4),
+        inset -2px 0 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .cassette-text {
+      font-size: 1.4rem;
+      color: #222;
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+      padding: 10px;
+      white-space: nowrap;
+    }
+
+    /* Different handwritten fonts for each cassette */
+    .font-0 { font-family: 'Permanent Marker', cursive; }
+    .font-1 { font-family: 'Indie Flower', cursive; }
+    .font-2 { font-family: 'Shadows Into Light', cursive; }
+    .font-3 { font-family: 'Caveat', cursive; }
+    .font-4 { font-family: 'Rock Salt', cursive; font-size: 1.2rem; }
+    .font-5 { font-family: 'Patrick Hand', cursive; }
+    .font-6 { font-family: 'Kalam', cursive; }
+    .font-7 { font-family: 'Covered By Your Grace', cursive; }
+    .font-8 { font-family: 'Satisfy', cursive; }
+    .font-9 { font-family: 'Allura', cursive; font-size: 1.6rem; }
+    .font-10 { font-family: 'Homemade Apple', cursive; }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+
+      .cassette-spine {
+        width: 60px;
+        height: 220px;
+      }
+
+      .cassette-text {
+        font-size: 1.1rem;
+      }
+
+      .font-4 {
+        font-size: 0.9rem;
+      }
+
+      .font-9 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <style>
-    body {
-      /*background-color: #2B2B2B;*/
-      margin-bottom: 60px;
-      /* Margin bottom by footer height */
-    }
-  </style>
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-1">A Wintry Mix</h1>
-      <p class="lead">Tunes for the season, compiled with love by <a href="https://billmorris.io" target="_blank">Bill
-          Morris</a></p>
-    </div>
-  </div>
-  <div class="container" id="card-container">
-    <!-- Cards will be appended here -->
+  <header>
+    <h1>A Wintry Mix</h1>
+    <p class="subtitle">Tunes for the season, compiled with love by <a href="https://billmorris.io" target="_blank">Bill Morris</a></p>
+  </header>
+
+  <div class="cassette-shelf" id="cassette-shelf">
+    <!-- Cassettes will be generated here -->
   </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const cardContainer = document.getElementById('card-container');
+      const cassetteShelf = document.getElementById('cassette-shelf');
       const currentYear = new Date().getFullYear();
       const years = [];
+
+      // Generate years from current back to 2015
       for (let year = currentYear; year >= 2015; year--) {
-        years.push(year.toString());
+        years.push(year);
       }
 
-      let row;
       years.forEach((year, index) => {
-        if (index % 3 === 0) {
-          // Create a new row every 3 cards
-          row = document.createElement('div');
-          row.className = 'row';
-          cardContainer.appendChild(row);
-        }
+        // Create cassette spine element
+        const cassette = document.createElement('a');
+        cassette.href = `${year}/`;
+        cassette.className = 'cassette-spine';
 
-        // Create card element
-        const col = document.createElement('div');
-        col.className = 'col';
-        const card = document.createElement('div');
-        card.className = 'card';
-        const img = document.createElement('img');
-        img.className = 'card-img-top';
-        img.src = `https://awintrymix.net/${year}/social_${year}.jpg`;
-        const cardBody = document.createElement('div');
-        cardBody.className = 'card-body';
-        const cardTitle = document.createElement('h5');
-        cardTitle.className = 'card-title';
-        cardTitle.textContent = year;
-        const cardText = document.createElement('p');
-        cardText.className = 'card-text';
-        const btn = document.createElement('a');
-        btn.className = 'btn btn-primary';
-        btn.href = `${year}/`;
-        btn.textContent = 'Listen';
+        // Create text element with rotating font
+        const text = document.createElement('div');
+        text.className = `cassette-text font-${index % 11}`;
+        text.textContent = `A Wintry Mix ${year}`;
 
-        // Append elements
-        cardBody.appendChild(cardTitle);
-        cardBody.appendChild(cardText);
-        cardBody.appendChild(btn);
-        card.appendChild(img);
-        card.appendChild(cardBody);
-        col.appendChild(card);
-        row.appendChild(col);
+        cassette.appendChild(text);
+        cassetteShelf.appendChild(cassette);
       });
     });
   </script>
