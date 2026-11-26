@@ -31,6 +31,7 @@ The project follows a year-based organization:
 - CSS-animated cassette reels that spin during playback
 - Handwriting font for active track display
 - No external dependencies (vanilla JS)
+- `nextPlayer.js` exposes `createPlayer({ audio, tracks, titleEl, playPauseBtn, reels })`, which stores whether the user wants playback in one `isPlaying` flag and keeps it in sync with the audio element's `play`/`pause`/`waiting`/`playing`/`ended`/`error` events. Every `audio.play()` promise is handled, and a token discards results from play requests that a newer action has replaced. Buttons are wired by id (`prev-btn`, `play-pause-btn`, `next-btn`).
 
 ### Data Source Pattern
 
@@ -115,6 +116,14 @@ This script:
 Track loading from Google Sheets API will fail locally (403 error) due to domain restrictions. For local testing:
 - Use the modern player pattern (2025+) with hardcoded track arrays
 - Or temporarily host with a local server that bypasses CORS
+
+### Player Tests (2025+)
+
+`YYYY/test.html` runs `nextPlayer.js` against a spec-faithful fake `<audio>` element (no dependencies). Open it in a browser, or run headless:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --virtual-time-budget=5000 --dump-dom "file://$PWD/2025/test.html" | grep summary
+```
 
 ### Styling Notes
 
