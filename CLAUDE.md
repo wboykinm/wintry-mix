@@ -13,7 +13,7 @@ Wintry Mix is a collection of holiday season music mixtapes dating back to 2015,
 The project follows a year-based organization:
 - Root `index.html` - Landing page that displays cassette shelf with all years (2015-present)
 - `YYYY/` directories (2015-2024) - Legacy players with `index.html`, `bbplayer.js`, and `mixtape.css`
-- `2025/` directory - Modern player with modular architecture
+- `2025/`+ directories - Modern player with modular architecture
 
 ### Player Evolution
 
@@ -31,6 +31,7 @@ The project follows a year-based organization:
 - CSS-animated cassette reels that spin during playback
 - Handwriting font for active track display
 - No external dependencies (vanilla JS)
+- `nextPlayer.js` exposes `createPlayer({ audio, tracks, titleEl, playPauseBtn, reels })`, which stores whether the user wants playback in one `isPlaying` flag and keeps it in sync with the audio element's `play`/`pause`/`waiting`/`playing`/`ended`/`error` events. Every `audio.play()` promise is handled, and a token discards results from play requests that a newer action has replaced. Buttons are wired by id (`prev-btn`, `play-pause-btn`, `next-btn`).
 
 ### Data Source Pattern
 
@@ -77,28 +78,30 @@ const tracks = [
 3. Generate social image: `node generate-social-image.js 2026`
 4. Update `index.html`:
    - Meta tags (title, OG tags, year references)
-   - Footer links if needed
+   - Footer YouTube/Spotify playlist links
 5. Update `nextTracks.js`:
    - Track list title year
    - Track data array
 6. Update `nextTape.css` if needed:
    - Background image reference: `url(snow2026.jpg)`
 
-The landing page `index.html` will automatically include the new year based on `currentYear`.
+7. Bump `latestYear` in the root `index.html` so the new cassette appears on the shelf. Optionally add the year to `yearFonts` to give its spine a signature font (2026 uses Knewave, matching its cassette label).
+
+An empty `tracks` array is supported: the player shows "Tracks coming soon…" and disables its controls.
 
 ### Generating Social Images
 
-Social images (1024x474px) can be auto-generated from the year's snow background image using ImageMagick:
+Social images (1024x474px) are generated from the year's snow background image with ImageMagick 7 (`brew install imagemagick`). Node is managed with nvm (`.nvmrc` pins the version):
 
 ```bash
+nvm use
 node generate-social-image.js <year>
 ```
 
 This script:
-- Requires ImageMagick to be installed on the system
 - Loads `<year>/snow<year>.jpg`
 - Resizes/crops to 1024x474px with smart centering
-- Adds "A Wintry Mix <year>" text overlay in Marker Felt font
+- Adds "A Wintry Mix <year>" text overlay in Knewave (bundled at `fonts/Knewave-Regular.ttf`, OFL-licensed)
 - Adds black stroke for readability over any background
 - Saves as `<year>/social_<year>.jpg`
 
@@ -116,12 +119,20 @@ Track loading from Google Sheets API will fail locally (403 error) due to domain
 - Use the modern player pattern (2025+) with hardcoded track arrays
 - Or temporarily host with a local server that bypasses CORS
 
+### Player Tests (2025+)
+
+`YYYY/test.html` runs `nextPlayer.js` against a spec-faithful fake `<audio>` element (no dependencies). Open it in a browser, or run headless:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --virtual-time-budget=5000 --dump-dom "file://$PWD/2025/test.html" | grep summary
+```
+
 ### Styling Notes
 
 **Landing Page:**
 - Cassette shelf design with vertical spines
 - 11 different handwritten Google Fonts rotating through years
-- Auto-generates cassettes from current year back to 2015
+- Generates cassettes from `latestYear` back to 2015
 
 **Legacy Players (2015-2024):**
 - Blend two background images: cassette tape + winter scene

@@ -1,4 +1,4 @@
-const { execSync } = require('child_process');
+const { execFileSync } = require('child_process');
 const fs = require('fs');
 const path = require('path');
 
@@ -6,69 +6,42 @@ const path = require('path');
 const year = process.argv[2] || new Date().getFullYear().toString();
 const snowImagePath = path.join(__dirname, year, `snow${year}.jpg`);
 const outputPath = path.join(__dirname, year, `social_${year}.jpg`);
+const fontPath = path.join(__dirname, 'fonts', 'Knewave-Regular.ttf');
 
 // Social image dimensions
 const WIDTH = 1024;
 const HEIGHT = 474;
 
 function generateSocialImage() {
-  try {
-    // Check if snow image exists
-    if (!fs.existsSync(snowImagePath)) {
-      console.error(`Error: ${snowImagePath} not found`);
-      process.exit(1);
-    }
-
-    console.log(`Generating social image for ${year}...`);
-
-    // Use ImageMagick to create the social image
-    // 1. Resize and crop to exact dimensions
-    // 2. Add text overlay with marker-style font
-    // 3. Add shadow/stroke for readability
-    const command = `convert "${snowImagePath}" \\
-      -resize ${WIDTH}x${HEIGHT}^ \\
-      -gravity center \\
-      -extent ${WIDTH}x${HEIGHT} \\
-      -font "Marker-Felt-Wide" \\
-      -pointsize 80 \\
-      -fill white \\
-      -stroke black \\
-      -strokewidth 4 \\
-      -gravity center \\
-      -annotate +0+0 "A Wintry Mix ${year}" \\
-      -quality 90 \\
-      "${outputPath}"`;
-
-    execSync(command);
-
-    console.log(`✓ Social image generated: ${outputPath}`);
-  } catch (error) {
-    console.error('Error generating social image:', error.message);
-
-    // Fallback: try with a different font if Brush Script isn't available
-    console.log('Retrying with alternative font...');
-    try {
-      const fallbackCommand = `convert "${snowImagePath}" \\
-        -resize ${WIDTH}x${HEIGHT}^ \\
-        -gravity center \\
-        -extent ${WIDTH}x${HEIGHT} \\
-        -font "Helvetica-Bold" \\
-        -pointsize 90 \\
-        -fill white \\
-        -stroke black \\
-        -strokewidth 4 \\
-        -gravity center \\
-        -annotate +0+0 "A Wintry Mix ${year}" \\
-        -quality 90 \\
-        "${outputPath}"`;
-
-      execSync(fallbackCommand, { stdio: 'inherit' });
-      console.log(`✓ Social image generated with fallback font: ${outputPath}`);
-    } catch (fallbackError) {
-      console.error('Fallback also failed:', fallbackError.message);
-      process.exit(1);
-    }
+  if (!fs.existsSync(snowImagePath)) {
+    console.error(`Error: ${snowImagePath} not found`);
+    process.exit(1);
   }
+
+  console.log(`Generating social image for ${year}...`);
+
+  // Resize/crop to exact dimensions, then overlay stroked text for readability.
+  try {
+    execFileSync('magick', [
+      snowImagePath,
+      '-resize', `${WIDTH}x${HEIGHT}^`,
+      '-gravity', 'center',
+      '-extent', `${WIDTH}x${HEIGHT}`,
+      '-font', fontPath,
+      '-pointsize', '84',
+      '-fill', 'white',
+      '-stroke', 'black',
+      '-strokewidth', '4',
+      '-annotate', '+0+0', `A Wintry Mix ${year}`,
+      '-quality', '90',
+      outputPath,
+    ], { stdio: 'inherit' });
+  } catch (error) {
+    console.error('Error generating social image (is ImageMagick 7 installed? `brew install imagemagick`):', error.message);
+    process.exit(1);
+  }
+
+  console.log(`✓ Social image generated: ${outputPath}`);
 }
 
 generateSocialImage();

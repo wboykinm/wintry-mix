@@ -25,7 +25,7 @@
   <!-- Import multiple handwritten fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Indie+Flower&family=Shadows+Into+Light&family=Caveat:wght@700&family=Rock+Salt&family=Patrick+Hand&family=Kalam:wght@700&family=Covered+By+Your+Grace&family=Satisfy&family=Allura&family=Homemade+Apple&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Indie+Flower&family=Shadows+Into+Light&family=Caveat:wght@700&family=Rock+Salt&family=Patrick+Hand&family=Kalam:wght@700&family=Covered+By+Your+Grace&family=Satisfy&family=Allura&family=Homemade+Apple&family=Knewave&display=swap" rel="stylesheet">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-43097260-3"></script>
@@ -161,6 +161,7 @@
     .font-8 { font-family: 'Satisfy', cursive; }
     .font-9 { font-family: 'Allura', cursive; font-size: 1.6rem; }
     .font-10 { font-family: 'Homemade Apple', cursive; }
+    .font-knewave { font-family: 'Knewave', cursive; }
 
     @media (max-width: 768px) {
       h1 {
@@ -200,11 +201,14 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const cassetteShelf = document.getElementById('cassette-shelf');
-      const currentYear = new Date().getFullYear();
+      // Bump when adding a new YYYY/ directory.
+      const latestYear = 2026;
+      // Years with a signature font override the rotating handwriting fonts.
+      const yearFonts = { 2026: 'font-knewave' };
       const years = [];
 
-      // Generate years from current back to 2015
-      for (let year = currentYear; year >= 2015; year--) {
+      // Generate years from latest back to 2015
+      for (let year = latestYear; year >= 2015; year--) {
         years.push(year);
       }
 
@@ -216,7 +220,7 @@
 
         // Create text element with rotating font
         const text = document.createElement('div');
-        text.className = `cassette-text font-${index % 11}`;
+        text.className = `cassette-text ${yearFonts[year] || `font-${index % 11}`}`;
         text.textContent = `A Wintry Mix ${year}`;
 
         cassette.appendChild(text);
