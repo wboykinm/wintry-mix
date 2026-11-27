@@ -128,7 +128,10 @@
 
     if (typeof document !== 'undefined' && typeof tracks !== 'undefined') {
         const audio = document.getElementById('audio-player');
-        if (audio) {
+        if (audio && tracks.length === 0) {
+            document.getElementById('track-title').textContent = 'Tracks coming soon…';
+            document.querySelectorAll('.controls button').forEach(btn => { btn.disabled = true; });
+        } else if (audio) {
             const player = createPlayer({
                 audio,
                 tracks,
